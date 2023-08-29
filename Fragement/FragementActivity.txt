@@ -1,0 +1,88 @@
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.RadioGroup;
+
+import com.lvyequeen.mystudysummry.R;
+
+public class FragementActivityextends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+
+    private Fragement1 fragement1;
+    private Fragement2 fragement2;
+    private Fragement3 fragement3;
+    private RadioGroup main_radiogroup;
+    private FragmentTransaction transaction;
+    private FragmentManager manager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragement_main);
+        initFragment();
+        initView();
+    }
+
+    /**
+     * 初始化MainActivity视图
+     */
+    private void initView() {
+        main_radiogroup = (RadioGroup) findViewById(R.id.main_radiogroup);
+        main_radiogroup.setOnCheckedChangeListener(this);
+    }
+
+    /**
+     * 初始化所有要加载的Fragment
+     */
+    private void initFragment() {
+
+        fragement1 = new Fragement1();
+        fragement2 = new Fragement2();
+        fragement3 = new Fragement3();
+        setDefaultFragment();
+    }
+
+    /**
+     * 设置默认的fragment
+     */
+    private void setDefaultFragment() {
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.main_linear, fragement1);
+        transaction.commit();
+
+    }
+
+    /**
+     * 点击下面一排RadioButton切换fragment
+     * @param fragment
+     */
+
+    private void replaceFragment(Fragment fragment){
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.main_linear,fragment);
+        transaction.commit();
+    }
+
+
+    /**
+     * RadioGroup的监听
+     * @param group
+     * @param checkedId
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case main_fragement_box1:
+                replaceFragment(fragement1);
+                break;
+            case main_fragement_box3:
+                replaceFragment(fragement2);
+                break;
+            case main_fragement_box3:
+                replaceFragment(fragement3);
+                break;
+        }
+    }
+}

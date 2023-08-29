@@ -1,0 +1,9 @@
+[{"type":"click","startX":xxx,"startY":xxx,"endX":xxx,"endY":xxx,"Event":0,"url":"xxx","time":},
+{"type":"click","startX":xxx,"startY":xxx,"endX":xxx,"endY":xxx,"Event":0,"url":"xxx","time":},
+]
+
+type: open
+        wait
+        keyevent
+        click
+        swipe

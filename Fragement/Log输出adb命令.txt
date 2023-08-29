@@ -1,0 +1,10 @@
+@Override
+public void onServerReceiveTouchPosition(int staX, int staY, int endX, int endY, int keyC) {
+ if (keyC == KeyEvent.KEYCODE_BACK) {
+      Log.i(TAG, "@" + "input keyevent 4");  //返回键
+  } else if ((staX - endX) == 0 && (staY - endY) == 0) {
+      Log.i(TAG, "@" + "input tap" + " " + staX + " " + staY);   //点击(X,Y)
+  } else if (Math.abs(staX - endX) > 100 || Math.abs(staY - endY) > 100) {
+      Log.i(TAG, "@" + "input swipe" + " " + staX + " " + staY + " " + endX + " " + endY);  //滑动(X1,Y1,X2,Y2)
+  }
+}

@@ -1,0 +1,22 @@
+CheckBox checkBox = findViewById(R.id.checkBox);
+checkBox.setVisibility(View.GONE);//隐藏
+View.VISIBLE//显示
+
+//判断文件是否存在于服务器
+public class FileExistsChecker {
+    public static boolean isFileExists(String fileUrl) {
+        try {
+            URL url = new URL(fileUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("HEAD");
+            int responseCode = connection.getResponseCode();
+            return responseCode == HttpURLConnection.HTTP_OK;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+
+
+
